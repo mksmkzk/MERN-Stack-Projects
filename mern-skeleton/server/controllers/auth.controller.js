@@ -1,6 +1,6 @@
 import User from '../models/user.model';
 import jwt from 'jsonwebtoken';
-import expressjwt from 'express-jwt';
+import { expressjwt } from 'express-jwt';
 import config from './../../config/config';
 
 // Sign in function
@@ -48,7 +48,8 @@ const signout = (req, res) => {
 // Function to check if user is signed in
 const requireSignin = expressjwt({
     secret: config.jwtSecret,
-    userProperty: 'auth'
+    userProperty: 'auth',
+    algorithms: ["HS256"]
 });
 
 // Function to check if user is authorized
